@@ -24,9 +24,11 @@ Rank-based Learning with deep neural network has been widely used for image crop
 5. run ``python demo.py --GPU x``
 
 ### Qualitative visualization on FCDB dataset
-1st and 4th : GT 
+1st : GT 
+2nd : ours 
+3rd : ours
 
-2nd, 3rd, 5th, 6th : ours 
+
 <img width= "160px" height = "90px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/images/0_gt.jpg"     alt="gt" align=center />&nbsp; &nbsp; <img width= "160px" height = "90px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/images/0_our.jpg"    alt="our" align=center />&nbsp; &nbsp; <img width= "160px" height = "70px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/images/0_crop.jpg"   alt="crop" align=center />
 
 <img width= "160px" height = "120px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/images/38_gt.jpg"    alt="gt" align=center />&nbsp; &nbsp; <img width= "160px" height = "120px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/images/38_our.jpg"   alt="our" align=center />&nbsp; &nbsp; <img width= "160px" height = "90px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/images/38_crop.jpg"  alt="crop" align=center />

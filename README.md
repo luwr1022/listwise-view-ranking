@@ -24,7 +24,8 @@ Rank-based Learning with deep neural network has been widely used for image crop
 5. run ``python demo.py --GPU x``
 
 ### Qualitative visualization on FCDB dataset
-1st and 4th : GT
+1st and 4th : GT 
+
 2nd, 3rd, 5th, 6th : ours 
 <figure class="third">
 <img style="width:160px;height:90px"  src="LVRN_eval/images/0_gt.jpg"     alt="gt" align=center />

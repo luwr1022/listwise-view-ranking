@@ -1,7 +1,7 @@
 # Listwise-View-Ranking-Image-Cropping
 
 ### Material
-[Paper](https://arxiv.org/pdf/1905.05352.pdf), [Model](https://pan.baidu.com/s/1mLP2pzW3IUEPpVs13l579Q)
+[Paper](https://arxiv.org/pdf/1905.05352.pdf), [Model(Google)](https://drive.google.com/open?id=1WVUsvR3MHhApCapyXUBIyslwG2yVOnxK), [Model(Baidu)](https://pan.baidu.com/s/1mLP2pzW3IUEPpVs13l579Q)
 
 ### Citation
 ```

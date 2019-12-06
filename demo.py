@@ -1,3 +1,6 @@
+from __future__ import absolute_import
+import _init_path
+
 import os
 import json
 import numpy as np
@@ -6,7 +9,7 @@ import datetime
 from PIL import Image, ImageDraw
 import argparse
 
-import net
+from model import LVRN as net
 
 import torch
 import torch.nn as nn
@@ -18,7 +21,7 @@ def parse_args():
     """
     parser = argparse.ArgumentParser(description='testing')
 
-    parser.add_argument('--GPU', dest='GPU',
+    parser.add_argument('--GPU', dest='GPUid',
                         help='usage: --GPU 0',
                         default=0, type=int)                      
 
@@ -27,8 +30,7 @@ def parse_args():
 
 def load_model(model_path):
     model = net.LVRN()
-    checkpoint = torch.load(model_path)
-    model.load_state_dict(checkpoint['model'])
+    model.load_pretrain_parameters(model_path)
     return model
 
 def overlap_ratio(x1, y1, w1, h1, x2, y2, w2, h2):
@@ -78,6 +80,8 @@ if __name__=="__main__":
     print('Called with args:')
     print(args)
     
+    os.environ['CUDA_VISIBLE_DEVICES'] = str(args.GPUid)  
+
     root = './images'
 
     # get model
@@ -94,6 +98,7 @@ if __name__=="__main__":
 
     for img_file in os.listdir(root):
         img_file = os.path.join(root, img_file)
+        print('input : %s'%(img_file))
         img = Image.open(img_file)
         width = img.width
         height = img.height
@@ -105,3 +110,4 @@ if __name__=="__main__":
         draw = ImageDraw.Draw(img)
         draw.rectangle((best_x, best_y, best_x + best_w, best_y + best_h), outline='red')    #draw highest score box
         img.save(img_file)
+        print('output: %s'%(img_file))

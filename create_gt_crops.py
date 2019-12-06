@@ -22,19 +22,18 @@ with open(gt_path, "w") as f:
 		data_dict = {"image_file_name":img_name, "crop":crop}
 		data.append(data_dict)
 	f.write(json.dumps(data))
-
+print('output:%s'%(gt_path))
 # FLMS
 images_path = 'data/FLMS/image'
 ann_path    = 'data/FLMS/500_image_dataset.mat'
-gt_path      = 'data/FLMS/gt_crop.json'
+gt_path     = 'data/FLMS/gt_crop.json'
 scale = [0.5, 0.6, 0.7, 0.8,0.9 ]
 grids = [5, 5]
 ratios = [0, 1.0, 9.0/16, 16.0/9, 3.0/4, 4.0/3]
-#ratios =[0]
 ann = sio.loadmat(ann_path)
 ann = ann['img_gt']
 
-with open(gtgt_pathdir,"w") as f:
+with open(gt_path,"w") as f:
 	data=[]
 	for item in ann:
 		filename = item['filename'][0][0]
@@ -52,6 +51,7 @@ with open(gtgt_pathdir,"w") as f:
 		dict = {"image_file_name":filename, "crop":crop}
 		data.append(dict)
 	f.write(json.dumps(data))
+print('output:%s'%(gt_path))
 
 
 

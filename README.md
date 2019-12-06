@@ -37,35 +37,4 @@ Rank-based Learning with deep neural network has been widely used for image crop
 5. run ``python demo.py --GPU x``
 
 ### Qualitative visualization on FCDB dataset
-1st and 4th : GT
-2nd, 3rd, 5th, 6th : ours 
-<figure class="third">
-<img style="width:160px;height:90px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/0_gt.jpg"     alt="gt" align=center />
-<img style="width:160px;height:90px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/0_our.jpg"    alt="our" align=center />
-<img style="width:160px;height:70px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/0_crop.jpg"   alt="crop" align=center />
-
-<img style="width:160px;height:120px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/38_gt.jpg"    alt="gt" align=center />
-<img style="width:160px;height:120px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/38_our.jpg"   alt="our" align=center />
-<img style="width:160px;height:90px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/38_crop.jpg"  alt="crop" align=center />
-</figure>
-
-<figure class="third">
-<img style="width:160px;height:120px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/28_gt.jpg"    alt="gt" align=center />
-<img style="width:160px;height:120px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/28_our.jpg"   alt="our" align=center />
-<img style="width:160px;height:90px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/28_crop.jpg"  alt="crop" align=center />
-
-<img style="width:160px;height:109px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/168_gt.jpg"   alt="gt" align=center />
-<img style="width:160px;height:109px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/168_our.jpg"  alt="our" align=center />
-<img style="width:150px;height:56px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/168_crop.jpg" alt="crop" align=center />
-</figure>
-
-<figure class="third">
-<img style="width:160px;height:107px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/29_gt.jpg"    alt="gt" align=center />
-<img style="width:160px;height:107px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/29_our.jpg"   alt="our" align=center />
-<img style="width:160px;height:75px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/29_crop.jpg"  alt="crop" align=center />
-
-<img style="width:160px;height:106px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/183_gt.jpg"   alt="gt" align=center />
-<img style="width:160px;height:106px" src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/183_our.jpg"  alt="our" align=center />
-<img style="width:115px;height:97px"  src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/183_crop.jpg" alt="crop" align=center />
-</figure>
-
+<img src="https://github.com/luwr1022/listwise-view-ranking/blob/master/examples/lvrn.jpg" alt="gt" align=center />

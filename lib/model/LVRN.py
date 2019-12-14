@@ -7,8 +7,10 @@ from torchvision.models import vgg16, resnet50, alexnet, squeezenet1_0
 from model import RoI_operation
 
 class LVRN(nn.Module):    
-    def __init__(self, model_path = None, fc1 = 1024, fc2 = 512):
+    def __init__(self, model_path = None, fc1 = 1024, fc2 = 512, use_cpu = False):
         super(LVRN, self).__init__()
+        self.use_cpu = use_cpu
+
         self.features = self.load_vgg16(model_path)
         
         self.fc_score = nn.Sequential(
@@ -21,7 +23,7 @@ class LVRN(nn.Module):
             nn.Linear(fc2, 1)
         )
 
-        self.RoI_op   = RoI_operation.RoI_op(7, 16, 2)
+        self.RoI_op   = RoI_operation.RoI_op(7, 16, 2, self.use_cpu)
         self.param_init()
         print(self)
         print("create LVRN successfully!")
@@ -74,7 +76,10 @@ class LVRN(nn.Module):
         return nn.Sequential(*features)
 
     def load_pretrain_parameters(self, model_path):
-        checkpoint = torch.load(model_path)
+        if self.use_cpu:
+            checkpoint = torch.load(model_path, map_location = 'cpu')
+        else:
+            checkpoint = torch.load(model_path)
 
         for module_name in checkpoint['model']:
             p = module_name.split('.')

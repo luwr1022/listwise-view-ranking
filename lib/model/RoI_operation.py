@@ -5,11 +5,13 @@ from model.roi_crop.modules.roi_crop import _RoICrop
 import torch
 import torch.nn as nn
 class RoI_op(object):
-    def __init__(self, output_size, feat_size, up_scale):
+    def __init__(self, output_size, feat_size, up_scale, use_cpu = False):
         super(RoI_op, self).__init__()
         self.output_size = output_size
         self.feat_size = feat_size
         self.up_scale = up_scale
+        self.use_cpu = use_cpu
+
         # roi pooling
         self.roi_pool =  _RoIPooling(self.output_size, self.output_size, 1.0 / self.feat_size)
 
@@ -69,8 +71,9 @@ class RoI_op(object):
         height = input_size[0]
         width = input_size[1]
 
-        #zero = rois.data.new(rois.size(0), 1).zero_()
-        zero = torch.zeros((rois.size(0), 1)).cuda()
+        zero = torch.zeros((rois.size(0), 1))
+        if not self.use_cpu:
+            zero = zero.cuda()
         theta = torch.cat([\
             (x2 - x1) / (width - 1),
             zero,

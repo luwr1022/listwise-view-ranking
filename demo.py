@@ -23,13 +23,16 @@ def parse_args():
 
     parser.add_argument('--GPU', dest='GPUid',
                         help='usage: --GPU 0',
-                        default=0, type=int)                      
+                        default=0, type=int)    
+    parser.add_argument('--CPU', dest='use_cpu',
+                        help='usage: --CPU', 
+                        action='store_true')                 
 
     args = parser.parse_args()
     return args
 
-def load_model(model_path):
-    model = net.LVRN()
+def load_model(model_path, use_cpu = False):
+    model = net.LVRN(use_cpu = use_cpu)
     model.load_pretrain_parameters(model_path)
     return model
 
@@ -51,11 +54,11 @@ def pytorch_transform(img):
     img = transform_test(torch.from_numpy(img)).float()
     return img
 
-def evaluate_single_image(img, pdefined_anchors, model):
+def evaluate_single_image(img, pdefined_anchors, model, args):
     # get eval img 
     img = img.resize((224,224), Image.BILINEAR)
     img = pytorch_transform(img)
-    img = img.view(1, 3, 224, 224).cuda()
+    img = img.view(1, 3, 224, 224)
 
     # get eval rois
     rois = np.zeros((len(pdefined_anchors), 5))
@@ -65,8 +68,11 @@ def evaluate_single_image(img, pdefined_anchors, model):
     rois[:, 3] = pdefined_anchors[:, 2] * 224 
     rois[:, 4] = pdefined_anchors[:, 3] * 224 
     rois = rois.astype(np.int)
-    rois = torch.from_numpy(rois).float().cuda()
+    rois = torch.from_numpy(rois).float()
     
+    if not args.use_cpu:
+        img = img.cuda()
+        rois = rois.cuda()
     # forward
     scores = model(img, rois)
 
@@ -79,16 +85,16 @@ if __name__=="__main__":
     args = parse_args()
     print('Called with args:')
     print(args)
-    
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(args.GPUid)  
 
     root = './images'
 
     # get model
     model_path = 'model/model_parameters.pth'
     print ("model:", model_path)
-    model = load_model(model_path)
-    model = model.cuda()
+    model = load_model(model_path, args.use_cpu)
+    if not args.use_cpu:
+        os.environ['CUDA_VISIBLE_DEVICES'] = str(args.GPUid)  
+        model = model.cuda()
     model.eval()
 
     # get predefined boxes(x1, y1, x2, y2)
@@ -102,7 +108,7 @@ if __name__=="__main__":
         img = Image.open(img_file)
         width = img.width
         height = img.height
-        best_anchor = evaluate_single_image(img, pdefined_anchors, model)
+        best_anchor = evaluate_single_image(img, pdefined_anchors, model, args)
         best_x = int(best_anchor[0] * width)
         best_y = int(best_anchor[1] * height)
         best_w = int(best_anchor[2] * width) - best_x

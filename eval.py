@@ -31,7 +31,7 @@ def parse_args():
     return args
 
 def load_model(model_path):
-    model = net.LVRN(cfg.vgg_model_path)
+    model = net.LVRN()
     model.load_pretrain_parameters(model_path)
     return model
 

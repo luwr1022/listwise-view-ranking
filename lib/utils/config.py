@@ -22,8 +22,8 @@ else:
 
 ############################################### path configure ###############################################
 CPC  = '...'
-FCDB = '../../data/FCDB'
-FLMS = '../../data/FLMS'
+FCDB = 'data/FCDB'
+FLMS = 'data/FLMS'
 save_data_root = './'
 save_model_root = './'
 
@@ -36,7 +36,7 @@ alexnet_model_path = ''
 squeezenet1_0_model_path = ''
 
 # apre-defined anchors
-pkl_file = './pdefined_anchor1745.pkl'
+pkl_file = 'pdefined_anchors.pkl'
 
 # FCDB
 FCDB_datadir = os.path.join(FCDB, 'flickr-cropping-dataset/data')
